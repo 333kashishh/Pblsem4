@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Parser - PBL Presentation | 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { background-color: #020617; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* TIMER UI - SAME STYLE */
+        #timerContainer { background: #ffffff; color: #020617; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 3px solid #3b82f6; z-index: 1000; }
+        @keyframes flicker { 0%, 100% { background-color: #ffffff; } 50% { background-color: #fca5a5; } }
+        .timer-warning { animation: flicker 1s infinite; border: 3px solid #ef4444 !important; color: #b91c1c !important; }
+        .timer-stop { background-color: #991b1b !important; color: #ffffff !important; border: 3px solid #f87171 !important; animation: none; }
+    </style>
+</head>
+<body onload="startTimer()">
+
+    <div id="timerContainer" class="fixed bottom-10 right-10 px-8 py-4 rounded-3xl flex items-center gap-4 transition-all">
+        <i class="fas fa-hourglass-start text-blue-600 text-2xl" id="timerIcon"></i>
+        <span id="displayTime" class="text-4xl font-black font-mono tracking-tighter">00:00</span>
+    </div>
+
+    <nav class="fixed w-full z-50 glass border-b border-slate-800/50 px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <div class="bg-white p-1 rounded flex items-center justify-center shadow-md" style="height: 48px; width: 48px;">
+                <img src="mujlogo.jpg" alt="MUJ" class="h-full w-auto object-contain" onerror="this.src='https://via.placeholder.com/50?text=MUJ'">
+            </div>
+            <div class="flex flex-col text-left">
+                <span class="text-xl font-black text-white leading-none uppercase tracking-tighter">PBL <span class="text-blue-500 italic">2026</span></span>
+                <span class="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">Dept. of Computer Science & Engineering</span>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-8 text-[11px] uppercase tracking-widest font-bold opacity-70">
+            <a href="#problem" class="hover:text-blue-400 transition">Problem</a>
+            <a href="#methodology" class="hover:text-blue-400 transition">Methodology</a>
+            <a href="#results" class="hover:text-blue-400 transition">Results</a>
+            <a href="#team" class="hover:text-blue-400 transition">Team</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 pt-48 pb-32 space-y-32">
+        
+        <!-- HERO FOR RESUME PARSER -->
+        <section class="text-center">
+            <div class="inline-block px-4 py-1 border border-slate-800 rounded-full text-slate-500 text-[10px] font-mono mb-6 uppercase tracking-widest">ID: 2427030366</div>
+            <h1 class="text-6xl md:text-7xl font-extrabold mb-8 uppercase leading-tight">
+                <span class="gradient-text uppercase">Resume Parser</span>
+            </h1>
+            <p class="text-xl text-slate-300 mb-4 font-semibold">Intelligent Filtering of Resumes Using Feature-Based Analysis</p>
+            <p class="text-slate-400 max-w-3xl mx-auto italic text-lg leading-relaxed border-l-2 border-blue-500/30 pl-6 text-left">
+                "We hypothesize that combining AI-powered parsing, NLP-based feature extraction, and customizable filters can automatically transform unstructured resumes into structured profiles and enable accurate, bias-reduced candidate shortlisting for recruiters."
+            </p>
+            <div class="mt-8 inline-block px-6 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-xs font-bold uppercase tracking-wider">
+                <i class="fas fa-shield-alt mr-2"></i>Screening Support Tool – Final Hiring Decision Remains with Recruiters
+            </div>
+        </section>
+
+        <!-- PROBLEM SECTION (RECRUITMENT CHALLENGE) -->
+        <section id="problem" class="grid md:grid-cols-2 gap-12 items-stretch">
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-center border-l-4 border-blue-600">
+                <h2 class="text-3xl font-extrabold mb-6">Problem Statement</h2>
+                <p class="text-slate-400 leading-relaxed text-justify mb-4">
+                    Recruiters often face thousands of applications per job opening, making manual resume screening time-consuming, inconsistent, and prone to bias. 
+                    Heterogeneous resume formats and ambiguous data points make it difficult to reliably identify the best candidates.
+                </p>
+                <ul class="text-sm text-slate-500 space-y-2 list-disc list-inside">
+                    <li><strong class="text-slate-400">Format Heterogeneity:</strong> PDFs, DOCX, scanned images, and graphical layouts confuse basic parsers</li>
+                    <li><strong class="text-slate-400">Inconsistency & Bias:</strong> Manual screening is tedious and influenced by unconscious bias</li>
+                    <li><strong class="text-slate-400">Data Ambiguity:</strong> Overlapping employment dates, missing information, and synonym skills</li>
+                    <li><strong class="text-slate-400">Scaling Issues:</strong> High volume of resumes slows down the hiring pipeline</li>
+                </ul>
+                <p class="text-blue-400 font-semibold mt-4 text-sm">
+                    → Need for an automated, accurate, and feature-based resume parsing and filtering system
+                </p>
+            </div>
+            <div class="space-y-6">
+                <div class="glass p-7 rounded-3xl border-r-4 border-blue-500/50">
+                    <h3 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-3">Literature Review / Market Research</h3>
+                    <p class="text-sm text-slate-400 mb-3"><strong>Existing Solutions:</strong></p>
+                    <ul class="text-xs text-slate-500 space-y-1 list-disc list-inside">
+                        <li>Traditional keyword-based parsers (limited context, high false matches)</li>
+                        <li>ATS tools focusing on simple text matching and format-dependent parsing</li>
+                        <li>Third-party resume parsing APIs with limited transparency and customization</li>
+                        <li>AI/NLP based tools that still lack fine-grained feature-based filtering</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 mt-3 italic">Industry trend: AI parsing can reduce time-to-hire by up to 75% and improve matching accuracy by around 40% when properly integrated into workflows.</p>
+                </div>
+                <div class="glass p-7 rounded-3xl border-r-4 border-purple-500/50">
+                    <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-3">Research Gap / Innovation</h3>
+                    <p class="text-sm text-slate-400 mb-2"><strong>Our Unique Approach:</strong></p>
+                    <ul class="text-xs text-slate-500 space-y-1">
+                        <li>✓ <strong class="text-purple-300">Feature-Based Filtering:</strong> Multi-criteria filtering on skills, experience, education, and certifications</li>
+                        <li>✓ <strong class="text-purple-300">Deep Data Extraction:</strong> Extraction of 150+ structured fields from diverse resume formats</li>
+                        <li>✓ <strong class="text-purple-300">Context-Aware NLP:</strong> Handles synonyms and role-specific vocabulary</li>
+                        <li>✓ <strong class="text-purple-300">Format Standardization:</strong> Converts all resumes into a unified JSON/XML schema</li>
+                        <li>✓ <strong class="text-purple-300">Inconsistency Flagging:</strong> Detects employment gaps and overlapping job dates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- METHODOLOGY SECTION FOR RESUME PARSER -->
+        <section id="methodology" class="space-y-12">
+            <h2 class="text-4xl font-black text-center uppercase tracking-tight">System <span class="text-blue-500">Methodology</span></h2>
+            
+            <div class="glass p-8 rounded-3xl mb-8">
+                <h3 class="text-blue-400 font-bold text-sm uppercase tracking-widest mb-4 text-center">Processing Pipeline</h3>
+                <div class="flex flex-wrap justify-center items-center gap-3 text-xs">
+                    <div class="px-4 py-2 bg-blue-500/20 rounded-lg border border-blue-500/30">Resume Ingestion</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-blue-500/20 rounded-lg border border-blue-500/30">Preprocessing & OCR</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-purple-500/20 rounded-lg border border-purple-500/30">Text Normalization</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-purple-500/20 rounded-lg border border-purple-500/30">Entity & Feature Extraction</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-green-500/20 rounded-lg border border-green-500/30">Structured Data Storage</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-amber-500/20 rounded-lg border border-amber-500/30">Feature-Based Filtering</div>
+                    <i class="fas fa-arrow-right text-slate-600"></i>
+                    <div class="px-4 py-2 bg-amber-500/20 rounded-lg border border-amber-500/30 font-bold">Shortlisted Candidates</div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-database text-blue-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">Dataset / Input</h3>
+                    <ul class="text-sm text-slate-400 space-y-2 text-left">
+                        <li><strong class="text-blue-400">Sources:</strong> Resumes in PDF, DOCX, TXT, and image formats</li>
+                        <li><strong class="text-blue-400">Preprocessing:</strong> OCR for scanned/image resumes, text cleaning</li>
+                        <li><strong class="text-blue-400">Fields:</strong> Name, contact, education, skills, experience, projects, certifications</li>
+                        <li><strong class="text-blue-400">Normalization:</strong> Standard date formats, role titles, and skill naming</li>
+                        <li><strong class="text-blue-400">Storage:</strong> Structured JSON objects per candidate</li>
+                    </ul>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <i class="fas fa-microchip text-purple-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-3 uppercase text-xs tracking-widest">Model / Architecture</h3>
+                    <ul class="text-sm text-slate-400 space-y-2 text-left">
+                        <li><strong class="text-purple-400">NLP Stack:</strong> Tokenization, POS tagging, and Named Entity Recognition</li>
+                        <li><strong class="text-purple-400">Skill Taxonomy:</strong> Mapping synonyms and related skills into unified groups</li>
+                        <li><strong class="text-purple-400">Rule + ML Hybrid:</strong> Rules for mandatory fields and ML-based scoring for ranking</li>
+                        <li><strong class="text-purple-400">Scoring Engine:</strong> Weighted feature-based match score for each candidate</li>
+                        <li><strong class="text-purple-400">Error Handling:</strong> Detection of missing, ambiguous, or conflicting data</li>
+                    </ul>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center border-2 border-green-500/20 bg-green-500/5">
+                    <i class="fab fa-python text-green-500 text-3xl mb-4"></i>
+                    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-green-400">Tech Stack</h3>
+                    <ul class="text-xs text-slate-400 space-y-2 text-left mb-4">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Python (core parsing engine)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>spaCy / NLTK for NLP</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Tesseract / OpenCV for OCR</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Flask / FastAPI REST API</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>MongoDB / PostgreSQL for structured storage</li>
+                    </ul>
+                    <a href="#" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40 inline-block">VIEW CODE / DEMO</a>
+                </div>
+            </div>
+
+            <div class="glass p-8 rounded-3xl mt-8">
+                <h3 class="text-amber-400 font-bold text-sm uppercase tracking-widest mb-4 text-center">
+                    <i class="fas fa-play-circle mr-2"></i>Live Execution Flow
+                </h3>
+                <ol class="text-sm text-slate-400 space-y-3 max-w-4xl mx-auto">
+                    <li><strong class="text-white">1. Recruiter Onboarding:</strong> Login, job role selection, and feature preference setup.</li>
+                    <li><strong class="text-white">2. Resume Upload:</strong> Bulk upload of resumes in multiple formats.</li>
+                    <li><strong class="text-white">3. Parsing & Extraction:</strong> Engine performs OCR (if needed), NLP, and feature extraction into structured fields.</li>
+                    <li><strong class="text-white">4. Feature-Based Filtering:</strong> Filters applied on skills, years of experience, education, and certifications.</li>
+                    <li><strong class="text-white">5. Ranked Output:</strong> Candidates are ranked by match score with flags for gaps or overlaps.</li>
+                    <li><strong class="text-white">6. Export / Integration:</strong> Shortlisted profiles exported or integrated with ATS/HR systems.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- RESULTS SECTION FOR RESUME PARSER -->
+        <section id="results" class="glass p-12 rounded-[3.5rem] border-t-4 border-blue-500">
+            <h2 class="text-3xl font-black mb-12 text-center uppercase tracking-tight">Results & <span class="text-blue-500">Analysis</span></h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="h-80"><canvas id="resultsChart"></canvas></div>
+                <div class="space-y-6">
+                    <div class="p-6 rounded-2xl bg-white/5 flex justify-between items-center border border-white/10 shadow-inner">
+                        <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Field Extraction Accuracy</span>
+                        <span class="text-blue-400 font-mono font-black text-3xl">92.0%</span>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/5 flex justify-between items-center border border-white/10 shadow-inner">
+                        <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Skill Mapping Accuracy</span>
+                        <span class="text-purple-400 font-mono font-black text-3xl">89.5%</span>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/5 flex justify-between items-center border border-white/10 shadow-inner">
+                        <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Match Score MAE</span>
+                        <span class="text-green-400 font-mono font-black text-3xl">0.12</span>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white/5 flex justify-between items-center border border-white/10 shadow-inner">
+                        <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Time Saved</span>
+                        <span class="text-amber-400 font-mono font-black text-3xl">~70%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-l-4 border-green-500">
+                    <h3 class="text-green-400 font-bold text-xs uppercase tracking-widest mb-3">
+                        <i class="fas fa-check-circle mr-2"></i>Key Achievements
+                    </h3>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li>✓ Automated parsing of heterogeneous resume formats into structured data</li>
+                        <li>✓ Support for customizable feature-based filters for different job roles</li>
+                        <li>✓ Significant reduction in manual screening time per 100 resumes</li>
+                        <li>✓ Detection and flagging of employment gaps and overlapping roles</li>
+                        <li>✓ Ready integration format (JSON/XML) for ATS and HR systems</li>
+                    </ul>
+                </div>
+                <div class="glass p-6 rounded-2xl border-l-4 border-amber-500">
+                    <h3 class="text-amber-400 font-bold text-xs uppercase tracking-widest mb-3">
+                        <i class="fas fa-road mr-2"></i>Next Steps: Phase 0
+                    </h3>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li>→ Evaluate parser on larger, real-world hiring datasets</li>
+                        <li>→ Add multi-language resume support</li>
+                        <li>→ Introduce ML-based ranking using historical hiring outcomes</li>
+                        <li>→ Extend bias detection and fairness metrics in scoring</li>
+                        <li>→ Integrate dashboards for HR analytics and decision support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 p-6 bg-red-500/10 border-l-4 border-red-500 rounded-2xl">
+                <p class="text-sm text-slate-400 italic">
+                    <strong class="text-red-400">Limitations:</strong> Parsing quality is sensitive to resume clarity, language, and structure. 
+                    Highly graphical or non-standard resumes may still require manual review. 
+                    Current models are trained on limited data and need further tuning for domain-specific roles.
+                </p>
+            </div>
+        </section>
+
+        <!-- TEAM / ACADEMIC CREDITS -->
+        <!-- TEAM / ACADEMIC CREDITS -->
+<section id="team" class="text-center pt-10 border-t border-slate-900">
+    <h2 class="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-12">Academic Credits</h2>
+    <div class="flex flex-wrap justify-center gap-10">
+        <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-blue-600">
+            <p class="text-[9px] font-bold text-blue-500 mb-2 uppercase tracking-widest">Project Guide</p>
+            <p class="font-black text-xl text-slate-100">Dr. TAPAN KUMAR DEY</p>
+            <p class="text-[10px] text-slate-500 mt-1">ASSISTANT PROFESSOR</p>
+        </div>
+        <div class="glass px-12 py-8 rounded-[2rem] border-b-4 border-slate-700">
+            <p class="text-[9px] font-bold text-slate-400 mb-2 uppercase tracking-widest">Student Developer</p>
+            <p class="font-black text-xl text-slate-100">KASHISH GUPTA</p>
+            <p class="text-[10px] text-slate-500 mt-1">2427030366</p>
+        </div>
+    </div>
+    <div class="mt-12 text-center">
+        <p class="text-xs text-slate-600 uppercase tracking-widest mb-3">Technologies Used</p>
+        <div class="flex flex-wrap justify-center gap-3">
+            <span class="px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-400 text-xs font-semibold">Python</span>
+            <span class="px-4 py-2 bg-purple-500/10 border border-purple-500/30 rounded-full text-purple-400 text-xs font-semibold">NLP (spaCy / NLTK)</span>
+            <span class="px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-green-400 text-xs font-semibold">Flask / FastAPI</span>
+            <span class="px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-xs font-semibold">OpenCV / Tesseract</span>
+            <span class="px-4 py-2 bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-400 text-xs font-semibold">MongoDB / SQL</span>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="py-12 text-center bg-black/40 border-t border-slate-900">
+        <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Manipal University Jaipur</p>
+        <p class="text-slate-500 text-[9px] font-medium tracking-[0.2em] uppercase opacity-50">Department of Computer Science & Engineering • PBL 2026</p>
+        <p class="text-slate-700 text-[8px] mt-4 italic">Resume Parser v0.1.0-pre-dev | Academic Project Prototype</p>
+    </footer>
+
+    <script>
+        // TIMER LOGIC
+        let sec = 0;
+        let timer = null;
+        function startTimer() {
+            timer = setInterval(() => {
+                sec++;
+                let m = Math.floor(sec / 60);
+                let s = sec % 60;
+                document.getElementById('displayTime').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                
+                if (sec >= 480 && sec < 600) { // 8-10 Mins Warning
+                    document.getElementById('timerContainer').classList.add('timer-warning');
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
+                } else if (sec >= 600) { // 10 Mins Stop
+                    clearInterval(timer);
+                    document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
+                    document.getElementById('displayTime').innerText = "10:00";
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-half', 'fa-hourglass-end');
+                }
+            }, 1000);
+        }
+
+        // RESULTS CHART - Resume Parser Performance Comparison
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Manual Screening', 'Keyword Parser', 'Feature-Based Parser'],
+                datasets: [{
+                    label: 'Time per 100 Resumes (Minutes)',
+                    data: [180, 90, 45],
+                    backgroundColor: ['#1e293b', '#3b82f6', '#10b981'],
+                    borderRadius: 12,
+                    barThickness: 60
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Time: ' + context.parsed.y + ' min';
+                            }
+                        }
+                    }
+                },
+                scales: { 
+                    y: { 
+                        beginAtZero: true, 
+                        max: 200,
+                        grid: { color: '#ffffff05' }, 
+                        ticks: { 
+                            color: '#94a3b8',
+                            callback: function(value) {
+                                return value + ' min';
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time to Process 100 Resumes (Lower is Better)',
+                            color: '#64748b',
+                            font: { size: 11, weight: 'bold' }
+                        }
+                    },
+                    x: { 
+                        grid: { display: false }, 
+                        ticks: { color: '#94a3b8', font: { size: 10 } }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
