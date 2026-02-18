@@ -162,11 +162,9 @@
                         <li><i class="fas fa-check text-green-500 mr-2"></i>Flask / FastAPI REST API</li>
                         <li><i class="fas fa-check text-green-500 mr-2"></i>MongoDB / PostgreSQL for structured storage</li>
                     </ul>
-                    <a 
-                     href="https://github.com/333kashishh/Pblsem4" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40 inline-block">VIEW CODE / DEMO</a>
+                    <a href="#" class="px-6 py-2 bg-green-600 rounded-full text-[10px] font-black hover:bg-green-500 transition shadow-lg shadow-green-900/40 inline-block">VIEW CODE / DEMO</a>
                 </div>
             </div>
-            
 
             <div class="glass p-8 rounded-3xl mt-8">
                 <h3 class="text-amber-400 font-bold text-sm uppercase tracking-widest mb-4 text-center">
@@ -284,37 +282,24 @@
         // TIMER LOGIC
         let sec = 0;
         let timer = null;
-
         function startTimer() {
             timer = setInterval(() => {
                 sec++;
-                const m = Math.floor(sec / 60);
-                const s = sec % 60;
-                const display = document.getElementById('displayTime');
-                const container = document.getElementById('timerContainer');
-                const icon = document.getElementById('timerIcon');
-                if (!display || !container || !icon) return;
-
-                display.innerText =
-                    m.toString().padStart(2, '0') + ':' + s.toString().padStart(2, '0');
-
-                if (sec >= 480 && sec < 600) { // 8–10 min warning
-                    container.classList.add('timer-warning');
-                    icon.classList.replace('fa-hourglass-start', 'fa-hourglass-half');
-                } else if (sec >= 600) { // 10 min stop
+                let m = Math.floor(sec / 60);
+                let s = sec % 60;
+                document.getElementById('displayTime').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                
+                if (sec >= 480 && sec < 600) { // 8-10 Mins Warning
+                    document.getElementById('timerContainer').classList.add('timer-warning');
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-start', 'fa-hourglass-half');
+                } else if (sec >= 600) { // 10 Mins Stop
                     clearInterval(timer);
-                    container.classList.remove('timer-warning');
-                    container.classList.add('timer-stop');
-                    display.innerText = '10:00';
-                    icon.classList.replace('fa-hourglass-half', 'fa-hourglass-end');
+                    document.getElementById('timerContainer').classList.replace('timer-warning', 'timer-stop');
+                    document.getElementById('displayTime').innerText = "10:00";
+                    document.getElementById('timerIcon').classList.replace('fa-hourglass-half', 'fa-hourglass-end');
                 }
             }, 1000);
         }
-
-        // Start when DOM is ready (safer than body onload)
-        document.addEventListener('DOMContentLoaded', () => {
-            startTimer();
-        });
 
         // RESULTS CHART - Resume Parser Performance Comparison
         const ctx = document.getElementById('resultsChart').getContext('2d');
